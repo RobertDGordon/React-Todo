@@ -4,6 +4,9 @@ const Todo = props => {
 
     return (
         <>
+        <div>
+            <p>{props.item.name}</p>
+        </div>
         </>
     )
 }
