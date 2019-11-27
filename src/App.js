@@ -11,7 +11,7 @@ class App extends React.Component {
     this.state = {
       todos:[
         {
-          task: '',
+          task: 'Submit Daily Retro',
           id: Date.now(),
           completed: false
         }
@@ -47,15 +47,26 @@ class App extends React.Component {
     })
   }
 
+  clearCompleted = () => {
+    this.setState({
+      todos: this.state.todos.filter(item => {
+        return !item.completed;
+      })
+    });
+  }
+
   render() {
     return (
-      <div>
+      <div className='App'>
+        <div className='header'>
         <h2>Welcome to your Todo App!</h2>
         <TodoForm addTask={this.addTask} />
+        </div>
         <div>
           <TodoList 
             todos={this.state.todos}
             toggleCompleted={this.toggleCompleted}
+            clearCompleted={this.clearCompleted}
           />
         </div>
       </div>
