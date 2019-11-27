@@ -1,6 +1,6 @@
 import React from 'react';
-import TodoForm from './components/TodoComponents/TodoForm'
-import { toASCII } from 'punycode';
+import TodoForm from './components/TodoComponents/TodoForm';
+import TodoList from './components/TodoComponents/TodoList'
 
 class App extends React.Component {
   // you will need a place to store your state in this component.
@@ -20,6 +20,7 @@ class App extends React.Component {
   }
 
   addTask = taskName => {
+    console.log (taskName)
     this.setState({
       todos: [
         ...this.state.todos,
@@ -32,11 +33,31 @@ class App extends React.Component {
     })
   }
 
+  toggleCompleted = taskId => {
+    this.setState ({
+      todos: this.state.todos.map(item => {
+        if (item.id === taskId) {
+          return {
+            ...item,
+            completed: !item.completed
+          }
+        }
+        return item;
+      })
+    })
+  }
+
   render() {
     return (
       <div>
         <h2>Welcome to your Todo App!</h2>
         <TodoForm addTask={this.addTask} />
+        <div>
+          <TodoList 
+            todos={this.state.todos}
+            toggleCompleted={this.state.toggleCompleted}
+          />
+        </div>
       </div>
     );
   }
