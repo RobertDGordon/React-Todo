@@ -18,6 +18,11 @@ class TodoForm extends React.Component{
         e.preventDefault();
         if (this.state.taskName !== '') {
             this.props.addTask(this.state.taskName);
+            window.localStorage.setItem('key',JSON.stringify([{
+                task: this.state.taskName,
+                id: Date.now(),
+                completed: false
+            }]))
             this.setState({
                 taskName:''
             });

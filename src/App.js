@@ -18,9 +18,14 @@ class App extends React.Component {
       ]
     }
   }
+  componentDidMount() {
+    const tasks = JSON.parse(window.localStorage.getItem('todos'))
+    console.log ('tasks',tasks)
+    // this.setState({ task: tasks });
+  }
 
   addTask = taskName => {
-    console.log (taskName)
+    // console.log (taskName)
     this.setState({
       todos: [
         ...this.state.todos,
